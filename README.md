@@ -4,7 +4,7 @@
 
 ## CMake
 
-`demo` `&` `lib` 简单CMake样例
+`demo & lib` 简单CMake样例
 
 
 
