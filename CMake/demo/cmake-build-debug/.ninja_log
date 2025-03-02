@@ -1,8 +1,0 @@
-# ninja log v6
-1	59	7625974318270399	calc/CMakeFiles/addition.dir/addition.cpp.obj	1230c6c5d34cb4b0
-59	130	7625974318850476	calc/libaddition.a	22493d656aba866f
-2	58	7625974449418093	calc/CMakeFiles/subtract.dir/subtract.cpp.obj	61523c909e33ea0b
-58	155	7625974450882716	calc/libsubtract.dll	9d79b14330bd2831
-58	155	7625974450882716	calc/libsubtract.dll.a	9d79b14330bd2831
-5	296	7625974449453815	CMakeFiles/demo.dir/main.cpp.obj	bfad9a46923e4f05
-296	383	7625974452362489	demo.exe	90bc8929a48a1247
