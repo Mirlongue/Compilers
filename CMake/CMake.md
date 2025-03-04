@@ -2,7 +2,7 @@
 
 ## 1. Introduction
 
-### 1.1 [User Interaction Guide ](https://cmake.org/cmake/help/latest/guide/user-interaction/index.html#guide:User Interaction Guide)
+### 1.1 [User Interaction Guide ](https://cmake.org/cmake/help/latest/guide/user-interaction/index.html#guide:User )
 
 #### 1.1.1 Command Line cmake tool
 
