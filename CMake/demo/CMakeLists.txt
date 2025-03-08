@@ -51,10 +51,13 @@ message(${CMAKE_INSTALL_PREFIX})
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-install(FILES ${PROJECT_SOURCE_DIR}/otherLib/libdivition.dll DESTINATION bin)
-install(FILES ${PROJECT_SOURCE_DIR}/otherLib/divition.h DESTINATION include)
 
-install(FILES ${PROJECT_SOURCE_DIR}/otherLib/libmultiply.a DESTINATION lib)
-install(FILES ${PROJECT_SOURCE_DIR}/otherLib/multiply.h DESTINATION include)
+#install(EXPORT tmp NAMESPACE me DESTINATION lib/tmp)
+
+#install(FILES ${PROJECT_SOURCE_DIR}/otherLib/libdivition.dll DESTINATION bin)
+#install(FILES ${PROJECT_SOURCE_DIR}/otherLib/divition.h DESTINATION include)
+#
+#install(FILES ${PROJECT_SOURCE_DIR}/otherLib/libmultiply.a DESTINATION lib)
+#install(FILES ${PROJECT_SOURCE_DIR}/otherLib/multiply.h DESTINATION include)
 
 install(FILES ${PROJECT_BINARY_DIR}/config.h DESTINATION include)
