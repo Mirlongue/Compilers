@@ -1,5 +1,15 @@
 cmake_minimum_required(VERSION 3.29)
-project(demo VERSION 1.0)
+project(demo VERSION 1.0)   # 1
+
+message("in ./")
+
+# 设置安装路径
+#set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/calc)   # 0
+set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/out)     # 1
+message(${CMAKE_INSTALL_PREFIX})
+
+message(${PROJECT_NAME})
+message(${CMAKE_PROJECT_NAME})
 
 message(${PROJECT_SOURCE_DIR})
 message(${CMAKE_SOURCE_DIR})
@@ -9,55 +19,29 @@ message(${PROJECT_BINARY_DIR})
 message(${CMAKE_BINARY_DIR})
 message(${CMAKE_CURRENT_BINARY_DIR})
 
-message(${PROJECT_NAME})
-message(${CMAKE_PROJECT_NAME})
-
-
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-#set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-#message(${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
-#message(${CMAKE_ARCHIVE_OUTPUT_DIRECTORY})
+# 设置动态库 静态库 运行时目录
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+message(${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+message(${CMAKE_ARCHIVE_OUTPUT_DIRECTORY})
 
 
 
-
-option(DATE_ENABLE "output date" ON)
-if(DATE_ENABLE)
-    set(DATE "\"2025/01/19\"")
-    message(${DATE})
-endif()
-
-
-configure_file(config.h.in config.h )
-
-
+# 设置编译器标准
 set(CMAKE_CXX_STANDARD 20)
 
-add_subdirectory(calc)
+# 子目录
+#add_subdirectory(calc)  # 0
 
+# 1
 add_executable(${PROJECT_NAME} main.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC
-                            ${PROJECT_BINARY_DIR}
-                            ${PROJECT_SOURCE_DIR}/calc
-                            ${PROJECT_SOURCE_DIR}/otherLib)
-target_link_libraries(${PROJECT_NAME}   addition
-                                        subtract
-                                        ${PROJECT_SOURCE_DIR}/otherLib/libmultiply.a
-                                        ${PROJECT_SOURCE_DIR}/otherLib/libdivition.dll)
+                           ${PROJECT_SOURCE_DIR}/calc/include)
 
-set(CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/out")
-message(${CMAKE_INSTALL_PREFIX})
+target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/calc/bin/libsubtract.dll
+                                      ${PROJECT_SOURCE_DIR}/calc/lib/libaddition.a)
 
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
-
-#install(EXPORT tmp NAMESPACE me DESTINATION lib/tmp)
-
-#install(FILES ${PROJECT_SOURCE_DIR}/otherLib/libdivition.dll DESTINATION bin)
-#install(FILES ${PROJECT_SOURCE_DIR}/otherLib/divition.h DESTINATION include)
-#
-#install(FILES ${PROJECT_SOURCE_DIR}/otherLib/libmultiply.a DESTINATION lib)
-#install(FILES ${PROJECT_SOURCE_DIR}/otherLib/multiply.h DESTINATION include)
-
-install(FILES ${PROJECT_BINARY_DIR}/config.h DESTINATION include)
+message("out ./")

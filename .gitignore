@@ -1,4 +1,7 @@
 /CMake/demo/.idea/
+/CMake/demo/calc/bin/
+/CMake/demo/calc/include/
+/CMake/demo/calc/lib/
 /CMake/demo/cmake-build-debug/
 /CMake/demo/cmake-build-release/
 /CMake/demo/out/
