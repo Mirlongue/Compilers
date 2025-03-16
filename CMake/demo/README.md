@@ -1,14 +1,10 @@
-# cmake
+# CMake
 
 ## 安装
 
 cmake：https://cmake.org/download/
 
 MinGW：https://sourceforge.net/projects/mingw-w64/files/mingw-w64/
-
-
-
-使用`CLion`     工具栏 构建 安装
 
 ## 构建和运行
 
