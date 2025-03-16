@@ -4,8 +4,8 @@
 
 ## CMake
 
-`demo`	CMake样例
+`Demo`	CMake样例
 
-`CMake.md`	[CMake官网文档](https://cmake.org/cmake/help/latest/)笔记
+`Note`	[CMake官网文档](https://cmake.org/cmake/help/latest/)笔记
 
 ## LLVM
