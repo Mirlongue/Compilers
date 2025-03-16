@@ -75,5 +75,24 @@ cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug
 cmake -S /path/to/source --preset=ninja-release
 ```
 
-可以通过`cmake -S /path/to/source --list-presets`列出可选的`presets`
+可以通过`cmake -S /path/to/source --list-presets`列出可选的`presets` (`/path/to/source/CMakePresets.json` `/path/to/source/CMakeUserPresets.json`)
 
+## 1.6 Invoking the Buildsystem
+
+```shell
+cmake --build .
+```
+
+接受参数 `--target` 指定构建目标
+
+接受参数 `--config` 在多配置生成器情况下指定要构建的配置,在调用`cmake`启用`CMAKE_BUILD_TYPE`是失效
+
+```shell
+cmake --build . --target myexe --config Release
+```
+
+## 1.7 Software Installation
+
+在`Unix`主机里`/usr/local`是默认的安装目录
+
+在交叉编译或打包场景中，如果sysyroot只读，CMAKE_STAGING_PREFIX变量会被设置为实际安装文件的位置
