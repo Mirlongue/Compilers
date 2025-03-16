@@ -5,3 +5,5 @@
 /CMake/Demo/cmake-build-debug/
 /CMake/Demo/cmake-build-release/
 /CMake/Demo/out/
+
+/CMake/Note/04Guides/01CMakeTutorial/*/build/
