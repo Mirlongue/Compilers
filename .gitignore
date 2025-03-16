@@ -1,3 +1,5 @@
+/.vscode/
+
 /CMake/Demo/.idea/
 /CMake/Demo/calc/bin/
 /CMake/Demo/calc/include/
