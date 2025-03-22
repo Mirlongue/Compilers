@@ -16,6 +16,9 @@ configure_file(TutorialConfig.h.in TutorialConfig.h)
 add_subdirectory(MathFunctions)
 list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/MathFunctions")
 
+message("EXTRA_INCLUDES:")
+message(${EXTRA_INCLUDES})
+
 # add the executable
 add_executable(Tutorial tutorial.cxx)
 
