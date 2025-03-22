@@ -6,6 +6,6 @@
 
 `Demo`	CMake样例
 
-`Note`	[CMake官网文档](https://cmake.org/cmake/help/latest/)笔记
+`Note`	[CMake文档](https://cmake.org/cmake/help/latest/)笔记
 
 ## LLVM
