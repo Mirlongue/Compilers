@@ -1,7 +1,0 @@
-C:/_workspace/Repository_Git/Compilers/CMake/Demo/build/CMakeFiles/demo.dir
-C:/_workspace/Repository_Git/Compilers/CMake/Demo/build/CMakeFiles/edit_cache.dir
-C:/_workspace/Repository_Git/Compilers/CMake/Demo/build/CMakeFiles/rebuild_cache.dir
-C:/_workspace/Repository_Git/Compilers/CMake/Demo/build/CMakeFiles/list_install_components.dir
-C:/_workspace/Repository_Git/Compilers/CMake/Demo/build/CMakeFiles/install.dir
-C:/_workspace/Repository_Git/Compilers/CMake/Demo/build/CMakeFiles/install/local.dir
-C:/_workspace/Repository_Git/Compilers/CMake/Demo/build/CMakeFiles/install/strip.dir

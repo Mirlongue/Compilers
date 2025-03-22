@@ -1,3 +1,0 @@
-C:/_workspace/Repository_Git/Compilers/CMake/Note/04Guides/01CMakeTutorial/Step1/build/CMakeFiles/Tutorial.dir
-C:/_workspace/Repository_Git/Compilers/CMake/Note/04Guides/01CMakeTutorial/Step1/build/CMakeFiles/edit_cache.dir
-C:/_workspace/Repository_Git/Compilers/CMake/Note/04Guides/01CMakeTutorial/Step1/build/CMakeFiles/rebuild_cache.dir
