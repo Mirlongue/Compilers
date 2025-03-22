@@ -1,0 +1,3 @@
+#define PROJECT_VERSION_MAJOR 2
+#define PROJECT_VERSION_MINOR 2
+/* #undef DATE */
