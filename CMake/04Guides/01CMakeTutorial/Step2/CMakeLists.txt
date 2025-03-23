@@ -32,5 +32,4 @@ target_link_libraries(Tutorial PUBLIC MathFunctions)
 # so that we will find TutorialConfig.h
 target_include_directories(Tutorial PUBLIC
                            "${PROJECT_BINARY_DIR}"
-                            ${EXTRA_INCLUDES}
-                           )
+                            ${EXTRA_INCLUDES})

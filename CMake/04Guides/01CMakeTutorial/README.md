@@ -50,6 +50,52 @@ configure_file(<input> <output>)
 
 ## Step1
 
+```shell
+mkdir build
+cd build
+
+cmake ../ -G Ninja
+cmake --build .
+```
+
+## Step2
+
+```shell
+mkdir build
+cd build
+
+cmake ../ -G Ninja
+cmake --build .
+```
+
+`list`
+
+```shell
+set(MY_LIST item1 item2 item3) # 直接定义列表
+
+list(APPEND MY_LIST item)
+list(INSERT MY_LIST index item)
+list(REMOVE MY_LIST item)
+list(POP_BACK MY_LIST)
+list(LENGTH MY_LIST output_var)
+list(GET MY_LIST output_var)
+list(JOIN MY_LIST glue output_var) # 用指定分隔符连接列表元素为字符串
+```
+
+`target_compile_definitions`
+
+```shell
+target_compile_definitions(MathFunctions PRIVATE "USE_MYMATH") # 编译 MathFunctions 定义 USE_MYMATH 配合文件中如下定义部分
+# #ifdef USE_MYMATH
+# ...
+# #endif
+
+```
+
+## Step3
+
+
+
 
 
 
