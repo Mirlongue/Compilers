@@ -28,8 +28,11 @@ else()
     target_include_directories(${PROJECT_NAME} PUBLIC
                            ${PROJECT_SOURCE_DIR}/out/include)
 
-    target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/out/bin/libsubtract.dll
-                                      ${PROJECT_SOURCE_DIR}/out/lib/libaddition.a)
+    target_link_directories(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/out/bin/
+                                            ${PROJECT_SOURCE_DIR}/out/lib/)
+
+    # target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/out/bin/libsubtract.dll
+    #                                   ${PROJECT_SOURCE_DIR}/out/lib/libaddition.a)
 
     install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 

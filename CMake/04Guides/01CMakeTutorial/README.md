@@ -46,9 +46,7 @@ configure_file(<input> <output>)
 # /* #undef VAR */
 ```
 
-
-
-
+`link_directories` 链接库目录 `link_libraries` 链接库
 
 ## Step1
 
