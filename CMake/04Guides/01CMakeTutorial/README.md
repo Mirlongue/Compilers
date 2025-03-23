@@ -94,7 +94,6 @@ target_compile_definitions(MathFunctions PRIVATE "USE_MYMATH") # 编译 MathFunc
 
 ## Step3
 
-<<<<<<< HEAD
 ```shell
 mkdir build
 cd build
@@ -102,9 +101,6 @@ cd build
 cmake ../ -G Ninja
 cmake --build .
 ```
-=======
-
->>>>>>> 24cc72ab82105fbadf1d285fa291beabe006791f
 
 
 
