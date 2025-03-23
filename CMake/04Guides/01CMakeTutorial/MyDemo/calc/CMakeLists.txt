@@ -1,12 +1,11 @@
 message("in ./calc/")
 
 project(calc VERSION 2.2)
-message(${PROJECT_NAME})
 
 # option样例
 option(DATE_ENABLE "output date" ON)
 if(DATE_ENABLE)
-    set(DATE \"2025/01/19\")
+    set(DATE 2025/03/23) # \" 转义" 
     message(${DATE})
 endif()
 

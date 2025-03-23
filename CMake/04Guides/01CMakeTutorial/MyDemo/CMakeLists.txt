@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.29)
 project(demo VERSION 1.0)
 
 
-option(PRE_BUILD "pre build" OFF)
+option(PRE_BUILD "pre build")
 
 set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/out)
 
@@ -19,6 +19,7 @@ message(${CMAKE_ARCHIVE_OUTPUT_DIRECTORY})
 set(CMAKE_CXX_STANDARD 20)
 
 if(PRE_BUILD)
+    message("PRE_BUILD")
     add_subdirectory(calc)
 else()
 
