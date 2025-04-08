@@ -6,7 +6,7 @@
 
 安装 `VS Code`
 
-安装 `LLVM` （可选， 通过 `CMAKE_C_COMPILER=clang`  `CMAKE_CXX_COMPILER=clang++` 指定）
+安装 `LLVM` （通过 `CMAKE_C_COMPILER=clang`  `CMAKE_CXX_COMPILER=clang++` 指定，需要`MSVC`库，安装`Visual Studio` 社区版即可 选择 使用C++的桌面开发）
 
 ## MyDemo
 
@@ -89,7 +89,6 @@ target_compile_definitions(MathFunctions PRIVATE "USE_MYMATH") # 编译 MathFunc
 # #ifdef USE_MYMATH
 # ...
 # #endif
-
 ```
 
 ## Step3

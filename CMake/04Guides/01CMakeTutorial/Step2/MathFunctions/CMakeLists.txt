@@ -8,13 +8,9 @@ add_library(MathFunctions MathFunctions.cxx)
 # TODO 7: Create a variable USE_MYMATH using option and set default to ON
 option(USE_MYMATH "Use tutorial provided math implementation" ON)
 if (USE_MYMATH)
-    message("USE_MYMATH")
     target_compile_definitions(MathFunctions PRIVATE "USE_MYMATH")
-
     add_library(SqrtLibrary STATIC mysqrt.cxx)
-
     target_link_libraries(MathFunctions PRIVATE SqrtLibrary)
-
 endif()
 
 # TODO 8: If USE_MYMATH is ON, use target_compile_definitions to pass
