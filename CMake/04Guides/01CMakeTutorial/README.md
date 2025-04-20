@@ -101,6 +101,11 @@ cmake ../ -G Ninja
 cmake --build .
 ```
 
+`target_compile_features(xxx INTERFACE cxx_std_11)`
+
+设置目标的编译特性，如c标准等
+
+
 
 
 
