@@ -8,6 +8,11 @@
 
 安装 `LLVM` （通过 `CMAKE_C_COMPILER=clang`  `CMAKE_CXX_COMPILER=clang++` 指定，需要`MSVC`库，安装`Visual Studio` 社区版即可 选择 使用C++的桌面开发）
 
+使用`Visual Studio`的`Developer Command Prompt`可以通过如下命令 查看动态库的依赖项目 `dumpbin /DEPENDENTS xxx.dill` 
+常用命令 `dir`  `cd /d your/path/to`
+
+`cmake --build . -v`添加`-v`以查看具体编译指令
+
 ## MyDemo
 
 ```shell
@@ -44,9 +49,21 @@ configure_file(<input> <output>)
 # #cmakedefine VAR ... 会被替换为以下两行之一，取决于VAR是否被设置
 # #define VAR ...
 # /* #undef VAR */
+# output 默认相对路径于 CMAKE_CURRENT_BINARY_DIR
 ```
 
-`link_directories` 链接库目录 `link_libraries` 链接库
+`link_directories` 链接库目录
+`link_libraries` 链接库  内填完整库文件名`<libxxx.dll>`，库名`<xxx>` 均可
+
+设置目标名称
+
+```cmake
+set_target_properties(<target> PROPERTIES OUTPUT_NAME <name>)
+```
+
+命令行`-D<xxx>`优先级最高，其次是`CMakeList`中设置的变量，然后是`CACHE`变量
+
+`add_subdirectory` 中 `target`信息会返回
 
 ## Step1
 
@@ -71,21 +88,21 @@ cmake --build .
 `list`
 
 ```shell
-set(MY_LIST item1 item2 item3) # 直接定义列表
+set(<MY_LIST> <item1> <item2> <item3>) # 直接定义列表
 
-list(APPEND MY_LIST item)
-list(INSERT MY_LIST index item)
-list(REMOVE MY_LIST item)
-list(POP_BACK MY_LIST)
-list(LENGTH MY_LIST output_var)
-list(GET MY_LIST output_var)
-list(JOIN MY_LIST glue output_var) # 用指定分隔符连接列表元素为字符串
+list(APPEND <MY_LIST> <item>)
+list(INSERT <MY_LIST> <index> <item>)
+list(REMOVE <MY_LIST> <item>)
+list(POP_BACK <MY_LIST>)
+list(LENGTH <MY_LIST> <output_var>)
+list(GET <MY_LIST> <output_var>)
+list(JOIN <MY_LIST> <glue> <output_var>) # 用指定分隔符连接列表元素为字符串
 ```
 
 `target_compile_definitions`
 
 ```shell
-target_compile_definitions(MathFunctions PRIVATE "USE_MYMATH") # 编译 MathFunctions 定义 USE_MYMATH 配合文件中如下定义部分
+target_compile_definitions(<MathFunctions> PRIVATE <USE_MYMATH>) # 编译 MathFunctions 定义USE_MYMATH 配合文件中如下定义部分
 # #ifdef USE_MYMATH
 # ...
 # #endif
@@ -101,9 +118,14 @@ cmake ../ -G Ninja
 cmake --build .
 ```
 
-`target_compile_features(xxx INTERFACE cxx_std_11)`
+设置接口库传递属性
 
-设置目标的编译特性，如c标准等
+`add_library(<tutorial_compiler_flags> INTERFACE)`
+
+设置目标的编译特性，如`c`标准等
+
+`target_compile_features(<xxx> INTERFACE cxx_std_11)`
+
 
 
 
