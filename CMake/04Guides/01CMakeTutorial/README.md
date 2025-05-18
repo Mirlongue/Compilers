@@ -126,9 +126,35 @@ cmake --build .
 
 `target_compile_features(<xxx> INTERFACE cxx_std_11)`
 
+## Step4
+```shell
+mkdir build
+cd build
 
+cmake ../ -G Ninja
+cmake --build .
+```
 
+`target_compile_options` 是一个用于为特定目标（如可执行文件或库）设置编译选项的命令，可以控制编译器在构建目标时使用的选项，如启用或禁用警告、设置优化级别、定义宏等
 
+生成器表达式，符合其中条件为真
+
+```cmake
+"$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU,LCC>"
+```
+
+`$<BUILD_INTERFACE:...>` 是一个生成器表达式，用于在构建接口中包含特定内容，特别适用于设置目标属性，如编译选项、包含目录等，以便这些属性仅在构建目标时应用，而不影响使用该目标的其他项目
+`-Wall` 启用大多数警告
+`-Wextra`启用额外的警告
+`-Wshadow`警告变量遮蔽
+`-Wformat=2`更严格的格式字符串检查
+`-Wunused` 警告未使用的变量和函数
+`-W3` 是 Microsoft Visual C++（MSVC）编译器提供的一个警告级别选项
+
+```cmake
+$<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>
+$<BUILD_INTERFACE:-W3>
+```
 
 
 
