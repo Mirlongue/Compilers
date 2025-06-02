@@ -97,6 +97,10 @@ list(POP_BACK <MY_LIST>)
 list(LENGTH <MY_LIST> <output_var>)
 list(GET <MY_LIST> <output_var>)
 list(JOIN <MY_LIST> <glue> <output_var>) # 用指定分隔符连接列表元素为字符串
+
+foreach(item IN LISTS <installable_libs>) # list 打印
+  message(${item})
+endforeach()
 ```
 
 `target_compile_definitions`
@@ -156,7 +160,33 @@ $<BUILD_INTERFACE:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>
 $<BUILD_INTERFACE:-W3>
 ```
 
+## Step5
+```shell
+mkdir build
+cd build
 
+cmake ../ -G Ninja
+cmake --build .
+cmake --install .
 
+ctest
+```
 
+设置安装路径(以防止安装到系统默认路径)
+
+```cmake
+set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR}/out)
+```
+安装命令
+```cmake
+install(TARGETS ${<installable_libs>} DESTINATION <lib>)
+install(FILES <MathFunctions.h> DESTINATION <include>)
+```
+
+设置测试
+
+```cmake
+enable_testing()
+add_test(NAME <Runs> COMMAND <./Tutorial 25>)
+```
 
