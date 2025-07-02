@@ -190,3 +190,20 @@ enable_testing()
 add_test(NAME <Runs> COMMAND <./Tutorial 25>)
 ```
 
+## Step6
+```shell
+mkdir build
+cd build
+
+cmake ../ -G Ninja
+cmake --build .
+cmake --install .
+
+ctest
+```
+
+导入`.cmake`文件
+
+```cmake
+include(xxx.cmake)文件或者 include(<module name>)
+```
