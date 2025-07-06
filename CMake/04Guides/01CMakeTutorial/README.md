@@ -324,3 +324,19 @@ cmake --install .
 ctest
 ```
 
+`include()`用于将另一个CMake脚本文件，（通常是`.cmake`文件）加载到当前CMake脚本中。
+
+```cmake
+include(<file|module> [OPTIONAL] [RESULT_VARIABLE <var>] [NO_POLICY_SCOPE])
+```
+
+`<file|module>` 可以是文件路径(`cmake/xxx.cmake`)或模块名如(`FindPackageHandleStandardArgs`)，如果是模块名，`CMake`会在 `CMAKE_MODULE_PATH`中查找对应的(`Find<module>.cmake`)文件
+
+`OPTIONAL` 如果文件不存在，不报错（静默跳过）
+
+`RESULT_VARIABLE <var>`    将文件是否成功加载的结果(`TRUE`/`FALSE`)存储到变量`<var>`中
+
+`NO_POLICY_SCOPE`    默认情况下会创建一个新的的策略作用域，使用此选项禁止此行为。(`cmake_policy()` 是 `CMake` 中用于管理策略(`Policy`)的核心命令，控制CMake在不同版本间的行为变更，确保项目在不同`CMake`版本下构建时行为一致)
+
+
+
