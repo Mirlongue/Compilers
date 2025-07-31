@@ -338,5 +338,16 @@ include(<file|module> [OPTIONAL] [RESULT_VARIABLE <var>] [NO_POLICY_SCOPE])
 
 `NO_POLICY_SCOPE`    默认情况下会创建一个新的的策略作用域，使用此选项禁止此行为。(`cmake_policy()` 是 `CMake` 中用于管理策略(`Policy`)的核心命令，控制CMake在不同版本间的行为变更，确保项目在不同`CMake`版本下构建时行为一致)
 
+## Step8
 
+```cmake
+mkdir build
+cd build
+
+cmake ../ -G Ninja
+cmake --build .
+cmake --install .
+
+ctest
+```
 
