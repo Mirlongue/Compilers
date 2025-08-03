@@ -22,11 +22,15 @@
 
 `option()`定义的变量存储在`CMakeCache.txt`中，其属性为全局，可以在整个项目中访问
 
-## configure_file
+## `configure_file`
 
+`configure_file(<input> <output>)`
 
+`@<variable>@` `${<variable>}`会被替换为变量当前值，未定义则被替换为空字符串
 
+`#cmakedefine <variable> [value]` 根据`<variable>` 设置情况被替换为`#define <variable> [value]` 或`/* #undef <variable> */`
 
+`<output>` 默认相对路径于 `CMAKE_CURRENT_BINARY_DIR`
 
 
 
