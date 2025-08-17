@@ -156,3 +156,131 @@ endforeach()
 
 设置目标的编译特性，如`c`标志等
 
+## `target_compile_options`
+
+`target_compile_options(<demo> [BEFORE|AFTER] INTERFACE|PUBLIC|PRIVATE <item>)`
+
+是一个用于为特定目标（如可执行文件或库）设置编译选项的命令，可以控制编译器在构建目标时使用的选项，如启用或禁用警告、设置优化级别、定义宏等
+
+## `include`
+
+`include(<file|module> [OPTIONAL] [RESULT_VARIABLE <var>] [NO_POLICY_SCOPE])`
+
+用于将另一个CMake脚本文件，（通常是`.cmake`文件）加载到当前CMake脚本中
+
+`<file|module>` 可以是文件路径（`cmake/xxx.cmake`）或模块名如（`FindPackageHandleStandardArgs`），如果是模块名，`CMake`会在 `CMAKE_MODULE_PATH`中查找对应的（`Find<module>.cmake`）文件
+
+`OPTIONAL` 如果文件不存在，不报错（静默跳过）
+
+`RESULT_VARIABLE <var>`    将文件是否成功加载的结果（`TRUE`/`FALSE`）存储到变量`<var>`中
+
+`NO_POLICY_SCOPE`    默认情况下会创建一个新的的策略作用域，使用此选项禁止此行为。（`cmake_policy()` 是 `CMake` 中用于管理策略（`Policy`）的核心命令，控制CMake在不同版本间的行为变更，确保项目在不同`CMake`版本下构建时行为一致）
+
+## `install`
+
+导出目标，可以`EXPORT`生成`CMake`匹配文件，允许其他项目通过`find_package()`引用
+
+若目标存在头文件引用，需要对引用路径进行处理
+
+```shell
+target_include_directories(<MathFunctions>
+        INTERFACE
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
+        $<INSTALL_INTERFACE:include>
+                           )
+
+set(installable_libs <MathFunctions> <tutorial_compiler_flags>)
+if(TARGET SqrtLibrary)
+  list(APPEND installable_libs SqrtLibrary)
+endif()
+install(TARGETS ${installable_libs} EXPORT <TMP> DESTINATION lib)
+# install include headers
+install(FILES MathFunctions.h DESTINATION include)
+install(EXPORT <TMP> FILE <TMP.cmake> DESTINATION <export>)
+```
+
+## `find_package`
+
+用法，以`OpenCV`为例，`find_package(OpenCV REQUIRED)`
+
+`Module`模式	解析`Findxxx.cmake`文件，是默认工作模式
+
+`Config`模式	解析`xxxConfig.cmake`文件或`xxx-config.cmake`文件
+
+### Module模式
+
+```cmake
+find_package(OpenCV REQUIRED)
+foreach(m ${OpenCV_LIBS})
+	get_target_property(m_include_dir ${m} INTERFACE_INCLUDE_DIRECTORIES)
+	get_target_property(m_location ${m} INTERFACE_LOCATION)
+	message(STATUS "OpenCV: ${m}")
+	message(STATUS " include dir: ${m_include_dir}")
+	message(STATUS " location: ${m_location}")
+endforeach()
+```
+
+该文件的查找过程只涉及到两个路径    `CMAKE_MODULE_PATH`    `CMAKE_ROOT`
+
+先在`CMAKE_MODULE_PATH`变量对应的路径中查找，若路径为空，则在`Cmake`安装目录（`CMAKE_ROOT`变量）下的`Modules`目录中查找
+
+`cmake --help-module-list`，查看`CMAKE_ROOT`路径下的包
+
+Findxxx.cmake文件的编写
+
+/opt/camera/
+{include
+    CameraApi.h
+    CameraDefine.h
+    CameraStatus.h
+lib
+    libMVSDK.so}
+
+
+
+FindCamera.cmake
+
+```cmake
+set(camera_root "/opt/camera") # 如上路径所示
+
+find_library(
+    Camera_LIB # 返回值
+    NAMES libMVSDK.so
+    PATHS ${camera_root}/lib
+    NO_DEFAULT_PATH #不搜索其他默认路径
+)
+
+find_path(
+    Camera_INCLUDE_DIR
+    NAMES CameraApi.h CameraDefine.h CameraStatus.h
+    PATHS ${camera_root}/include
+    NO_DEFAULT_PATH #不搜索其他默认路径
+)
+
+if(NOT TARGET camera)
+    add_library(camera SHARED IMPORTED)
+    set_target_properties(camera PROPERTIES
+        IMPORTED_LOCATION ${Camera_LIB}
+        INTERFACE_INCLUDE_DIRECTORIES ${Camera_INCLUDE_DIR}
+    )
+endif()
+
+# 校验
+find_package_handle_standard_args(
+    Camera
+    REQUIRED_VARS Camera_LIB Camera_INCLUDE_DIR
+)
+```
+
+### config模式
+
+照如下顺序查找`xxxConfig.cmake`
+
+`<PackageName>_DIR` 这个变量默认为空，需要直接指定到`<PackageName>Config.cmake`或`<lower-case-package-name>-config.cmake`文件所在的目录才能找到
+
+`CMAKE_PREFIX_PATH`	`CMAKE_FRAMEWORK_PATH`	`CMAKE_APPBUNDLE_PATH` 这些变量指定的路径将作为查找时的根目录，默认都为空
+
+`PATH`环境变量路径
+
+`CMAKE_SYSTEM_PREFIX_PATH` 等系统变量路径
+
